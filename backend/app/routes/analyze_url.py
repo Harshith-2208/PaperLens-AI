@@ -13,7 +13,6 @@ def analyze_from_url(pdf_url: str):
     filename = "temp_paper.pdf"
     path = os.path.join(UPLOAD_DIR, filename)
 
-    # download pdf
     response = requests.get(pdf_url)
 
     with open(path, "wb") as f:

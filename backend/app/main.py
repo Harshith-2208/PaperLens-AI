@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.routes import search, upload, analyze
 from app.routes import analyze_url
+from app.routes import trending
+
 app = FastAPI(title="PaperLens AI")
 
 app.add_middleware(
@@ -17,6 +19,7 @@ app.include_router(search.router)
 app.include_router(upload.router)
 app.include_router(analyze.router)
 app.include_router(analyze_url.router)
+app.include_router(trending.router)
 
 @app.get("/")
 def root():

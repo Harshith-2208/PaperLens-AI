@@ -12,18 +12,32 @@ MODEL_ID = "amazon.nova-lite-v1:0"
 def analyze_text(text):
 
     prompt = f"""
-Analyze the following research paper and provide:
+    Analyze the research paper and return results in MARKDOWN.
 
-1. Summary
-2. Key Contributions
-3. Methodology
-4. Results
-5. Limitations
-6. Future Research Directions
+    Sections:
+    ### Summary
+    ### Methodology
+    ### Results
+    ### Limitations
 
-Paper:
-{text}
-"""
+    Then generate a quiz section:
+
+    ### Quiz
+
+    Generate 5 MCQ questions.
+
+    Format:
+
+    1. Question text
+    A) option
+    B) option
+    C) option
+    D) option
+    Answer: correct_option_letter
+
+    Paper:
+    {text}
+    """
 
     response = client.converse(
         modelId=MODEL_ID,
@@ -42,7 +56,6 @@ Paper:
     )
 
     output = response["output"]["message"]["content"][0]["text"]
-
     return {
         "analysis": output
     }
